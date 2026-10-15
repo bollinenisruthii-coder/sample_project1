@@ -1,3 +1,4 @@
+import img1 from '../assets/img1.png'
 function Contact(){
     return(
         <div>
