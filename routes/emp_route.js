@@ -17,13 +17,20 @@ router.post("/login",async (req,res)=>{
     if(emailcheck){
         let passcheck=await bcrypt.compare(data.password,emailcheck.password);
         if (passcheck){
-            res.send("login successfully");
+            res.send({"msg":"login successfully",
+                "user":{
+                    _id:emailcheck._id,
+                    name:emailcheck.name,
+                    email:emailcheck.email,
+                    role:emailcheck.role
+                }
+        });
         }else{
-            res.send("password wrong")
+            res.send({"msg":"password wrong"})
         }
     }
     else{
-        res.send("user not found");
+        res.send({"msg":"user not found"});
     }
 })
 router.get("/viewtask",(req,res)=>{
